@@ -106,7 +106,7 @@
                         name: $(".list-entry").val()
                     },
                     success: function () {
-                        $(".list-entry").val("").focus();
+                        $(".list-entry").val("").focus().trigger('click');
 
                     },
                     type: "POST"
