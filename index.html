@@ -64,8 +64,6 @@
                     <br>
                     <br>
                     <br>
-                    <br>
-                    <br>
                     <form class="form-inline form-signin" role="form">
                         <h2>Quick Add</h2>
 
@@ -87,7 +85,13 @@
 
         <script>
 
+            document.addEventListener("resume", onResume, false);
 
+            function onResume() {
+                $(".list-entry").val("").focus().trigger('click');
+            }
+
+            onResume();
 
             $(".show-tokens").click(function () {
                 $(".tokens").removeClass("hide");
