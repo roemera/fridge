@@ -10,23 +10,35 @@
 
     </head>
     <body>
+        <a href="https://trello.com/1/authorize?key=8d33be7a0ea6f6294339895ba802b978&name=Fridge&expiration=never&response_type=token"
+                >Get Token
+        </a>
+
+        <input class="token-entry"><a class="token-save">Set Token</a>
 
         <script>
-            Trello.authorize({
-                name: "Fridge",
-                scope: { read: true, write: true, account: true },
-                expiration: "never",
-                success: function(){
-                    Trello.get("members/me/boards", {}, function(data){
-                        $.each(data, function(i, v){
-                            if(!v.closed){
-                                $("body").append("<li>"+ v.name+"</li>")
-                            }
-                        });
-                    }, function(){})
-                }
 
-            })
+            $(".token-save").click(function(){
+                localStorage.setItem("token", $(".token-entry").val());
+            });
+
+            $.ajax({
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        if (!v.closed) {
+                            $("body").append("<li>" + v.name + "</li>")
+                        }
+                    });
+                },
+                url: "https://api.trello.com/1/members/me/boards",
+                data: {
+                    key:"8d33be7a0ea6f6294339895ba802b978",
+                    token:localStorage.getItem("token")
+                },
+                dataType: "jsonp"
+            });
+
+
         </script>
 
     </body>
