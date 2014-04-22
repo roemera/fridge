@@ -1,1 +1,33 @@
-<h1>test</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fridge</title>
+
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="https://api.trello.com/1/client.js?key=8d33be7a0ea6f6294339895ba802b978"></script>
+
+
+    </head>
+    <body>
+
+        <script>
+            Trello.authorize({
+                name: "Fridge",
+                scope: { read: true, write: true, account: true },
+                expiration: "never",
+                success: function(){
+                    Trello.get("members/me/boards", {}, function(data){
+                        $.each(data, function(i, v){
+                            if(!v.closed){
+                                $("body").append("<li>"+ v.name+"</li>")
+                            }
+                        });
+                    }, function(){})
+                }
+
+            })
+        </script>
+
+    </body>
+</html>
