@@ -85,12 +85,12 @@
 
         <script>
 
-            document.addEventListener("resume", onResume, false);
+
 
             function onResume() {
-                $(".list-entry").val("").focus().trigger('click');
+                $(".list-entry").trigger('click');
             }
-
+            document.addEventListener("resume", onResume, false);
             onResume();
 
             $(".show-tokens").click(function () {
